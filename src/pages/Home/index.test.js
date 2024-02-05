@@ -21,10 +21,17 @@ describe("When Form is created", () => {
         })
       );
       await screen.findByText("En cours");
+      // Ligne avec l'erreur pour être sûr d'y repasser
       await screen.findByText("Message envoyé !");
+      // TODO: A revoir 
+      await (new Promise((resolve) => {
+        setTimeout(async () => {
+          await screen.findByText("Message envoyé !");
+          resolve()
+        }, 1500)
+      }))
     });
   });
-
 });
 
 

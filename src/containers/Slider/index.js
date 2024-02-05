@@ -30,7 +30,7 @@ const Slider = () => {
       {byDateDesc?.map((event, idx) => (
         // Ajout d'un fragment pour regrouper plusieurs éléments adjacents (SlideCard & les boutons radio) sans ajouter de noeud DOM supplémentaire.
         // (Tout doit être regrouper dans un seul élément parent)
-      <React.Fragment key={event.id}>
+      <React.Fragment key={`slider-${idx}`.toString()}>
           <div
             key={event.title}
             className={`SlideCard SlideCard--${

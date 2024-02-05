@@ -19,6 +19,7 @@ export const api = {
 export const DataProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  const last = data?.events?.length > 0 ? data.events[data.events.length - 1] : null;
   const getData = useCallback(async () => {
     try {
       setData(await api.loadData());
@@ -37,6 +38,7 @@ export const DataProvider = ({ children }) => {
       value={{
         data,
         error,
+        last,
       }}
     >
       {children}
