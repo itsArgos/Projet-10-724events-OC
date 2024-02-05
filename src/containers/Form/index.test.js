@@ -22,7 +22,8 @@ describe("When Events is created", () => {
         })
       );
       await screen.findByText("En cours");
-      await screen.findByText("Envoyer");
+      // Ajout d'un timer pour attendre que le message soit envoyé
+      await screen.findByText("Envoyer", {}, { timeout: 1500 });
       expect(onSuccess).toHaveBeenCalled();
     });
   });
