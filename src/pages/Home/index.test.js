@@ -23,27 +23,27 @@ describe("When Form is created", () => {
       await screen.findByText("En cours");
       // Ajout d'un timer pour attendre que le texte s'affiche
       await screen.findByText("Message envoyé !", {}, { timeout: 1500 });
-      // TODO: A revoir 
-      // await (new Promise((resolve) => {
-      //   setTimeout(async () => {
-      //     await screen.findByText("Message envoyé !");
-      //     resolve()
-      //   }, 1500)
-      // }))
     });
   });
 });
 
-
+// ***** TEST UNITAIRE *****
 describe("When a page is created", () => {
   it("a list of events is displayed", () => {
-    // to implement
-  })
-  it("a list a people is displayed", () => {
-    // to implement
+    render(<Home/>);
+    expect(screen.getByText("Samira"));
+    expect(screen.getByText("Jean-baptiste"));
+    expect(screen.getByText("Alice"));
+    expect(screen.getByText("Luís"));
+    expect(screen.getByText("Christine"));
+    expect(screen.getByText("Isabelle"));
   })
   it("a footer is displayed", () => {
-    // to implement
+    render(<Home/>);
+    expect(screen.getByText("Notre derniére prestation"));
+    expect(screen.getByText("Contactez-nous"));
+    expect(screen.getByText("45 avenue de la République, 75000 Paris"));
+    expect(screen.getByText("Une agence événementielle propose des prestations de service spécialisées dans la conception et l'organisation de divers événements tels que des événements festifs, des manifestations sportives et culturelles, des événements professionnels"));
   })
   it("an event card, with the last event, is displayed", () => {
     // to implement
