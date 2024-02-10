@@ -12,21 +12,18 @@ const Slider = () => {
       // Inversion de evtA & evtB pour afficher les images du plus ancien au plus récent
       new Date(evtB.date) - new Date(evtA.date)
   );
+  
 
   const nextCard = () => {
-    if (byDateDesc !== undefined) {
-      setTimeout(
-        // la fonction vérifie si (index) est inférieur à byDateDesc.length - 1. Si c'est le cas, elle augmente l'index de 1, sinon, elle réinitialise l'index à 0.
-        () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
-        5000
-      );
-    }
+    setIndex((prevIndex) => (prevIndex < byDateDesc.length - 1 ? prevIndex + 1 : 0));
   };
 
   useEffect(() => {
-    nextCard();
-    // Ajout de index comme dépendance pour s'assurer que nextCard() est appelée chaque fois que index change.
-  }, [index]);
+    const timer = setTimeout(nextCard, 5000);
+    // clearTimeout est utilisé pour annuler le minuteur, empêchant ainsi la fonction nextCard de s'exécuter en arrière-plan.
+    return () => clearTimeout(timer);
+    // Ajout de index et byDateDesc comme dépendance qui signifie que le hook sera réexécuté chaque fois que l'une de ces valeurs change.
+  }, [index, byDateDesc]);
 
   const handleRadioChange = (radioIdx) => {
     setIndex(radioIdx);
